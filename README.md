@@ -3,21 +3,21 @@
 Before starting, edit the prometheus endpoints you will be scraping to the bottom
 of the `prometheus/prometheus.yml` file.
 
-Start it up with
+Start it up with:
 
 ```bash
-	docker-compose up -d
+docker-compose up -d
 ```
 
-Stop it with
+Stop it with:
 
 ```bash
-	docker-compose down
+docker-compose down
 ```
 
 If you want to delete the data volumes (this will delete your prometheus database
-and anything else you've stored!
+and anything else you've stored!):
 
 ```bash
-	docker-compose down -v
+docker-compose down -v
 ```
