@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    expose:
+      - "9092"
+    volumes:
+      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - "grafana-storage:/var/lib/grafana"
+      - "./grafana/prometheus-datasource.yml:/etc/grafana/provisioning/datasources/corelight.yml"
+      - "./grafana/provisioning-dashboard.yml:/etc/grafana/provisioning/dashboards/corelight.yml"
+      - "./grafana/dashboards:/corelight-dashboards"
+
+volumes:
+  grafana-storage:
