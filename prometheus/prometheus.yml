@@ -11,6 +11,10 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9092']
 
+  - job_name: 'humio'
+    static_configs:
+      - targets: ['humio:8081']
+
   - job_name: 'corelight'
     static_configs:
       - targets: 

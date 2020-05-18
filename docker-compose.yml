@@ -18,5 +18,23 @@ services:
       - "./grafana/provisioning-dashboard.yml:/etc/grafana/provisioning/dashboards/corelight.yml"
       - "./grafana/dashboards:/corelight-dashboards"
 
+  humio:
+    image: humio/humio
+    restart: unless-stopped
+    expose:
+      - "8081"
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./humio/:/etc/humio:ro"
+      - "humio-storage:/data"
+      - "kafka-storage:/kafka-data"
+    ulimits:
+      nofile:
+        soft: 8192
+        hard: 8192
+
 volumes:
   grafana-storage:
+  humio-storage:
+  kafka-storage:
