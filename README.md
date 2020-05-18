@@ -5,19 +5,19 @@ of the `prometheus/prometheus.yml` file.
 
 Start it up with
 
-::bash
-
+```bash
 	docker-compose up -d
+```
 
 Stop it with
 
-::bash
-
+```bash
 	docker-compose down
+```
 
 If you want to delete the data volumes (this will delete your prometheus database
 and anything else you've stored!
 
-::bash
-
+```bash
 	docker-compose down -v
+```
