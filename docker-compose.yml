@@ -18,5 +18,20 @@ services:
       - "./grafana/provisioning-dashboard.yml:/etc/grafana/provisioning/dashboards/corelight.yml"
       - "./grafana/dashboards:/corelight-dashboards"
 
+  loki:
+    image: grafana/loki
+    command: -config.file=/etc/loki/loki.yml
+    ports:
+      - "3100:3100"
+    volumes:
+      - "./loki/loki.yml:/etc/loki/loki.yml"
+
+  promtail:
+    image: grafana/promtail
+    command: -config.file=/etc/promtail/promtail.yml
+    volumes:
+      - "./loki/promtail.yml:/etc/promtail/promtail.yml"
+      - "/tmp/logs:/logs"
+
 volumes:
   grafana-storage:
