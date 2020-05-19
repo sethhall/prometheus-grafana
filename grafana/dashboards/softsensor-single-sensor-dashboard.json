@@ -13,64 +13,68 @@
     ]
   },
   "editable": true,
+  "folder": "Corelight",
   "gnetId": null,
-  "graphTooltip": 1,
+  "graphTooltip": 0,
   "id": 2,
+  "iteration": 1589855357387,
   "links": [],
   "panels": [
     {
       "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
-        "w": 8,
+        "w": 7,
         "x": 0,
         "y": 0
       },
-      "id": 16,
+      "id": 18,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
         "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
       },
-      "pluginVersion": "7.0.0-474018eepre",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "sum(corelight_monitor_conns_tcp_active)",
-          "instant": true,
+          "expr": "sum(corelight_monitor_conns_tcp_active{instance=~\"[[server_instance]]\"})",
           "interval": "",
           "legendFormat": "TCP",
           "refId": "A"
         },
         {
-          "expr": "sum(corelight_monitor_conns_udp_active) ",
-          "instant": true,
+          "expr": "sum(corelight_monitor_conns_udp_active{instance=~\"[[server_instance]]\"})",
           "interval": "",
           "legendFormat": "UDP",
           "refId": "B"
         },
         {
-          "expr": "sum(corelight_monitor_conns_icmp_active) ",
-          "instant": true,
+          "expr": "sum(corelight_monitor_conns_icmp_active{instance=~\"[[server_instance]]\"})",
           "interval": "",
           "legendFormat": "ICMP",
           "refId": "C"
@@ -78,57 +82,58 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Active connections",
+      "title": "Active Connections",
       "type": "stat"
     },
     {
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
-        "w": 8,
-        "x": 8,
+        "w": 7,
+        "x": 7,
         "y": 0
       },
-      "id": 22,
+      "id": 16,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
           "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto"
+        }
       },
-      "pluginVersion": "7.0.0-474018eepre",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "corelight_suricata_rules_loaded",
-          "instant": true,
+          "expr": "corelight_suricata_rules_loaded{instance=~\"[[server_instance]]\"}",
           "interval": "",
-          "legendFormat": "Loaded",
+          "legendFormat": "Rules Loaded",
           "refId": "A"
         },
         {
-          "expr": "corelight_suricata_rules_failed",
-          "instant": true,
+          "expr": "corelight_suricata_rules_failed{instance=~\"[[server_instance]]\"}",
           "interval": "",
-          "legendFormat": "Failed",
+          "legendFormat": "Rules Failed",
           "refId": "B"
         }
       ],
@@ -138,48 +143,54 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
-        "w": 4,
-        "x": 16,
+        "w": 3,
+        "x": 17,
         "y": 0
       },
-      "id": 12,
+      "id": 14,
       "options": {
-        "fieldOptions": {
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "percent"
-          },
-          "overrides": [],
           "values": false
         },
-        "orientation": "auto",
-        "showThresholdLabels": true,
+        "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.0.0-474018eepre",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "((corelight_filesystem_size_bytes - corelight_filesystem_avail_bytes) / corelight_filesystem_size_bytes) * 100",
-          "instant": false,
+          "expr": "corelight_filesystem_usage_ratio{instance=~\"[[server_instance]]\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -187,60 +198,56 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Disk Used",
+      "title": "Disk used",
       "type": "gauge"
     },
     {
-      "cacheTimeout": null,
       "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 4,
         "x": 20,
         "y": 0
       },
-      "id": 14,
-      "links": [],
+      "id": 20,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "mappings": [
-              {
-                "id": 0,
-                "op": "=",
-                "text": "N/A",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "dark-blue",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "bytes"
-          },
-          "overrides": [],
           "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        }
       },
-      "pluginVersion": "7.0.0-474018eepre",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
-          "expr": "corelight_filesystem_size_bytes",
-          "instant": false,
+          "expr": "corelight_filesystem_size_bytes{instance=~\"[[server_instance]]\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -258,7 +265,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -290,6 +303,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:251",
           "alias": "Dropped",
           "yaxis": 2
         }
@@ -299,25 +313,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(corelight_monitor_pkts_data_bytes_total[$__interval])*8)",
+          "expr": "sum(rate(corelight_monitor_pkts_data_bytes_total{instance=~\"[[server_instance]]\"}[$__interval])*8)",
           "interval": "",
           "legendFormat": "Zeek",
           "refId": "B"
         },
         {
-          "expr": "rate(corelight_suricata_pkts_data_bytes_total[$__interval]) * 8  ",
+          "expr": "rate(corelight_suricata_pkts_data_bytes_total{instance=~\"[[server_instance]]\"}[$__interval]) * 8  ",
           "interval": "",
           "legendFormat": "Suricata",
           "refId": "D"
         },
         {
-          "expr": "rate(corelight_monitor_pkts_data_bytes_total[$__interval]) * 8  ",
+          "expr": "rate(corelight_monitor_pkts_data_bytes_total{instance=~\"[[server_instance]]\"}[$__interval]) * 8  ",
           "interval": "",
           "legendFormat": "{{process}} rate",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(corelight_monitor_pkts_dropped_total[$__interval]))",
+          "expr": "sum(rate(corelight_monitor_pkts_dropped_total{instance=~\"[[server_instance]]\"}[$__interval]))",
           "interval": "",
           "legendFormat": "Dropped rate",
           "refId": "C"
@@ -343,6 +357,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:58",
           "format": "bps",
           "label": null,
           "logBase": 1,
@@ -351,6 +366,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:59",
           "format": "bps",
           "label": null,
           "logBase": 1,
@@ -369,7 +385,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -405,13 +427,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "corelight_memory_mapped_bytes",
+          "expr": "corelight_memory_mapped_bytes{instance=~\"[[server_instance]]\"}",
           "interval": "",
           "legendFormat": "Mapped {{process}}",
           "refId": "A"
         },
         {
-          "expr": "corelight_memory_allocated_bytes",
+          "expr": "corelight_memory_allocated_bytes{instance=~\"[[server_instance]]\"}",
           "interval": "",
           "legendFormat": "Allocated {{process}}",
           "refId": "B"
@@ -437,6 +459,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:295",
           "format": "bytes",
           "label": null,
           "logBase": 1,
@@ -445,6 +468,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:296",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -463,7 +487,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -471,298 +501,6 @@
         "w": 12,
         "x": 0,
         "y": 13
-      },
-      "hiddenSeries": false,
-      "id": 10,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(corelight_memory_allocated_bytes)",
-          "interval": "",
-          "legendFormat": "Allocated",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(corelight_memory_mapped_bytes)",
-          "interval": "",
-          "legendFormat": "Mapped",
-          "refId": "B"
-        },
-        {
-          "refId": "C"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Total Memory Use",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 13
-      },
-      "hiddenSeries": false,
-      "id": 18,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(corelight_monitor_conns_killed_by_inactivity_total[$__interval])) ",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "Killed by Inactivity",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(corelight_monitor_conns_fragments)",
-          "interval": "",
-          "legendFormat": "Fragments",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Connection Information",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "cps",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 22
-      },
-      "hiddenSeries": false,
-      "id": 20,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(corelight_monitor_conns_tcp_total[$__interval])) by (job)",
-          "interval": "",
-          "legendFormat": "TCP",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(rate(corelight_monitor_conns_udp_total[$__interval])) by (job)",
-          "interval": "",
-          "legendFormat": "UDP",
-          "refId": "B"
-        },
-        {
-          "expr": "sum(rate(corelight_monitor_conns_icmp_total[$__interval])) by (job)",
-          "interval": "",
-          "legendFormat": "ICMP",
-          "refId": "C"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "New connection rate",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 22
       },
       "hiddenSeries": false,
       "id": 6,
@@ -791,7 +529,323 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "corelight_filesystem_usage_ratio",
+          "expr": "sum(corelight_memory_allocated_bytes{instance=~\"[[server_instance]]\"})",
+          "interval": "",
+          "legendFormat": "Allocated",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(corelight_memory_mapped_bytes{instance=~\"[[server_instance]]\"})",
+          "interval": "",
+          "legendFormat": "Mapped",
+          "refId": "B"
+        },
+        {
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Total Memory Use",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:703",
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:704",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 13
+      },
+      "hiddenSeries": false,
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(corelight_monitor_conns_killed_by_inactivity_total{instance=~\"[[server_instance]]\"}[$__interval])) ",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Killed by Inactivity",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(corelight_monitor_conns_fragments{instance=~\"[[server_instance]]\"})",
+          "interval": "",
+          "legendFormat": "Fragments",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Connection Information",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:182",
+          "format": "cps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:183",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 22
+      },
+      "hiddenSeries": false,
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(corelight_monitor_conns_tcp_total{instance=~\"[[server_instance]]\"}[$__interval])) by (job)",
+          "interval": "",
+          "legendFormat": "TCP",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(rate(corelight_monitor_conns_udp_total{instance=~\"[[server_instance]]\"}[$__interval])) by (job)",
+          "interval": "",
+          "legendFormat": "UDP",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(rate(corelight_monitor_conns_icmp_total{instance=~\"[[server_instance]]\"}[$__interval])) by (job)",
+          "interval": "",
+          "legendFormat": "ICMP",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "New connection rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:150",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:151",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 22
+      },
+      "hiddenSeries": false,
+      "id": 12,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "corelight_filesystem_usage_ratio{instance=~\"[[server_instance]]\"}",
           "interval": "",
           "legendFormat": "{{job}} disk used",
           "refId": "A"
@@ -817,6 +871,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:470",
           "decimals": null,
           "format": "percent",
           "label": null,
@@ -826,6 +881,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:471",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -841,19 +897,45 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 22,
+  "schemaVersion": 25,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "192.168.1.4:8989",
+          "value": "192.168.1.4:8989"
+        },
+        "datasource": "Prometheus",
+        "definition": "label_values(corelight_monitor_pkts_link_total, instance)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Instance",
+        "multi": false,
+        "name": "server_instance",
+        "options": [],
+        "query": "label_values(corelight_monitor_pkts_link_total, instance)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
-      "5s",
       "10s",
       "30s",
       "1m",
@@ -866,10 +948,7 @@
     ]
   },
   "timezone": "",
-  "title": "Corelight Softsensor Overview",
-  "uid": "H964cJzgz",
-  "variables": {
-    "list": []
-  },
-  "version": 25
+  "title": "Softsensor Single Sensor Dashboad",
+  "uid": "PKKiR8gMz",
+  "version": 4
 }
